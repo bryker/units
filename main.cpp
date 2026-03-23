@@ -17,9 +17,10 @@ int main()
     std::cout << "\tOr in ft/s^2: " << moon_gravity.as(FOOT / SECOND / SECOND) << std::endl;
 
     Distance d;
-    for(int i = 0; i < 10; i++)
+    Speed s = 1 * FOOT / SECOND;
+    for (int i = 0; i < 10; i++)
     {
-        d += 1 * METER;
+        d += s * SECOND;
     }
-    
+    std::cout << "Total distance traveled is: " << d.as(METER) << " meters" << std::endl;
 }
