@@ -8,6 +8,8 @@ namespace units
     constexpr Distance YARD = 3 * FOOT;
     constexpr Distance MILE = 5280 * FOOT;
 
+    constexpr Area ACRE = 4840 * YARD.squared();
+
     constexpr Volume US_GALLON = 231 * INCH * INCH * INCH;
     constexpr Volume IMPERIAL_GALLON = 4.54609 * LITER;
     constexpr Volume US_QUART = US_GALLON / 4;

@@ -37,15 +37,11 @@ namespace units
         }
 
         /********* Data Retrieval *********/
-        template <int other_kilogram, int other_meter, int other_second>
-        constexpr float as(const Unit<other_kilogram, other_meter, other_second> other) const
+        constexpr float as(const Unit<kilogram, meter, second> other) const
         {
-            static_assert(kilogram == other_kilogram, "units do not match");
-            static_assert(meter == other_meter, "units do not match");
-            static_assert(second == other_second, "units do not match");
-
             return value / other.value;
         }
+
 
         friend std::ostream &operator<<(std::ostream &stream, const Unit<kilogram, meter, second> &unit)
         {
@@ -155,9 +151,7 @@ namespace units
         }
 
     private:
-        constexpr Unit(const float value)
-            requires(kilogram != 0 || meter != 0 || second != 0)
-            : value(value)
+        constexpr Unit(const float value) : value(value)
         {
         }
         float value = 0;
