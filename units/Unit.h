@@ -140,6 +140,16 @@ namespace units
             return Unit<n * kilogram, n * meter, n * second>(std::pow(value, n));
         }
 
+        template<int n>
+        constexpr auto root() const
+        {
+            static_assert(kilogram % n == 0, "Result must have integer exponent for kilograms");
+            static_assert(meter % n == 0, "Result must have integer exponent for meters");
+            static_assert(second % n == 0, "Result must have integer exponent for seconds");
+
+            return Unit<kilogram / n, meter / n, second / n>(std::pow(value, 1.0/n));
+        }
+
         constexpr auto squared() const
         {
             return this->pow<2>();
@@ -148,6 +158,37 @@ namespace units
         constexpr auto cubed() const
         {
             return this->pow<3>();
+        }
+
+        /********* Comparison Operators *********/
+        constexpr bool operator==(const Unit<kilogram, meter, second> &other) const
+        {
+            return this->value == other.value;
+        }
+        
+        constexpr bool operator!=(const Unit<kilogram, meter, second> &other) const
+        {
+            return this->value != other.value;
+        }
+
+        constexpr bool operator>(const Unit<kilogram, meter, second> &other) const
+        {
+            return this->value > other.value;
+        }
+
+        constexpr bool operator<(const Unit<kilogram, meter, second> &other) const
+        {
+            return this->value < other.value;
+        }
+
+        constexpr bool operator>=(const Unit<kilogram, meter, second> &other) const
+        {
+            return this->value >= other.value;
+        }
+
+        constexpr bool operator<=(const Unit<kilogram, meter, second> &other) const
+        {
+            return this->value <= other.value;
         }
 
     private:
